@@ -6,9 +6,6 @@
   <title>τ — Illumina: Convergent Rendezvous</title>
   <meta name="description" content="Illumina (τ): convergent rendezvous via mathematical and anthropic attractors for τ-robust messaging across civilizations and seeded universes." />
 
-  <!-- Canonical: set your domain if you want -->
-  <!-- <link rel="canonical" href="https://YOUR.DOMAIN/%CF%84/"> -->
-
   <!-- Inline favicon: gradient disk with a tau glyph -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzdjM2FlZCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2Y1OWUwYiIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxjaXJjbGUgY3g9IjE2IiBjeT0iMTYiIHI9IjE2IiBmaWxsPSIjMGIwZjE5Ii8+PHRleHQgeD0iMTYiIHk9IjIxIiBmb250LXNpemU9IjE2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ1cmwoI2cpIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiPs6oPC90ZXh0Pjwvc3ZnPg==" />
 
@@ -31,6 +28,159 @@
       color:var(--ink);
       font:16px/1.6 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
     }
+    a{color:var(--link);text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    /* CONSENT OVERLAY */
+    .consent-overlay{
+      position:fixed;
+      inset:0;
+      background:rgba(11,15,25,.95);
+      backdrop-filter:blur(12px);
+      z-index:1000;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+    }
+    .consent-overlay.hidden{display:none}
+    .consent-box{
+      background:var(--panel);
+      border:1px solid var(--rule);
+      border-radius:20px;
+      padding:32px;
+      max-width:420px;
+      text-align:center;
+      box-shadow:0 24px 80px rgba(0,0,0,.5);
+    }
+    .consent-box h2{
+      margin:0 0 12px;
+      font-size:28px;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      -webkit-background-clip:text;
+      background-clip:text;
+      -webkit-text-fill-color:transparent;
+      color:transparent;
+    }
+    .consent-box p{
+      margin:0 0 20px;
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.6;
+    }
+    .consent-box .artist-note{
+      font-style:italic;
+      color:var(--ink);
+      margin-bottom:20px;
+    }
+    .consent-btn{
+      padding:14px 28px;
+      border-radius:14px;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      color:#fff;
+      font-weight:700;
+      font-size:15px;
+      border:none;
+      cursor:pointer;
+      transition:transform .15s ease, box-shadow .15s ease;
+    }
+    .consent-btn:hover{
+      transform:translateY(-2px);
+      box-shadow:0 8px 24px rgba(124,58,237,.4);
+    }
+    .consent-btn:active{transform:scale(.97)}
+
+    /* SITE HEADER */
+    .site-header{
+      background:var(--panel);
+      border-bottom:1px solid var(--rule);
+      padding:12px 20px;
+      position:sticky;
+      top:0;
+      z-index:100;
+    }
+    .site-header-inner{
+      max-width:var(--maxw);
+      margin:0 auto;
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      gap:12px 24px;
+    }
+    .site-title{
+      font-weight:700;
+      font-size:20px;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      -webkit-background-clip:text;
+      background-clip:text;
+      -webkit-text-fill-color:transparent;
+      color:transparent;
+    }
+    .site-nav{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px 16px;
+    }
+    .site-nav a{font-size:14px}
+
+    /* MUSIC PLAYER */
+    .music-player{
+      background:var(--panel);
+      border-bottom:1px solid var(--rule);
+      padding:12px 20px;
+    }
+    .music-player-inner{
+      max-width:var(--maxw);
+      margin:0 auto;
+      display:flex;
+      align-items:center;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+    .music-info{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      flex:1;
+      min-width:200px;
+    }
+    .music-dot{
+      width:12px;height:12px;border-radius:50%;
+      background:radial-gradient(circle at 35% 35%,var(--accent),var(--accent-2));
+      box-shadow:0 0 12px rgba(124,58,237,.5);
+      animation:pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse{
+      0%,100%{opacity:1;transform:scale(1)}
+      50%{opacity:.7;transform:scale(1.1)}
+    }
+    .music-text{font-size:14px;color:var(--muted)}
+    .music-text strong{color:var(--ink)}
+    .music-controls{display:flex;gap:10px;align-items:center}
+    .music-btn{
+      padding:8px 14px;
+      border-radius:10px;
+      background:rgba(255,255,255,.06);
+      border:1px solid var(--rule);
+      color:var(--ink);
+      font-size:13px;
+      cursor:pointer;
+      transition:background .2s ease;
+    }
+    .music-btn:hover{background:rgba(255,255,255,.12)}
+    .music-btn.playing{
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      border-color:transparent;
+    }
+    #youtube-player{
+      position:fixed;
+      top:-9999px;
+      left:-9999px;
+      width:1px;
+      height:1px;
+      pointer-events:none;
+    }
+
     .wrap{max-width:var(--maxw);margin:0 auto;padding:48px 20px 96px}
     header{text-align:center;margin-bottom:32px}
     .logo{
@@ -38,16 +188,17 @@
       font-weight:900;
       letter-spacing:1px;
       background:linear-gradient(135deg,var(--accent),var(--accent-2));
-      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      -webkit-background-clip:text;
+      background-clip:text;
+      -webkit-text-fill-color:transparent;
+      color:transparent;
       display:inline-block;margin-bottom:8px; line-height:1;
     }
     .subtitle{color:var(--muted);font-size:15px}
     .meta{margin-top:8px;color:var(--muted);font-size:14px}
-    nav{margin:26px auto;max-width:780px;text-align:left;background:var(--panel);
+    nav.toc{margin:26px auto;max-width:780px;text-align:left;background:var(--panel);
         border:1px solid var(--rule);border-radius:12px;padding:16px 20px}
-    nav a{color:var(--link);text-decoration:none}
-    nav a:hover{text-decoration:underline}
-    nav ul{margin:0;padding-left:18px}
+    nav.toc ul{margin:0;padding-left:18px}
     section{background:rgba(255,255,255,.02);border:1px solid var(--rule);
         border-radius:16px;padding:24px 20px;margin:18px 0}
     h1{margin:0 0 8px;font-size:clamp(26px,4.5vw,38px);line-height:1.2}
@@ -56,36 +207,106 @@
     p{margin:10px 0 0}
     .equation{display:block;margin:12px 0;padding:12px 14px;background:var(--code);
       border:1px solid var(--rule);border-radius:10px;
-      font-family:ui-monospace,Menlo,Consolas,"Courier New",monospace;overflow:auto;white-space:nowrap}
+      font-family:ui-monospace,Menlo,Consolas,"Courier New",monospace;overflow-x:auto;white-space:nowrap}
     .abstract{font-style:italic;color:var(--muted)}
     .callout{padding:14px;border:1px dashed var(--rule);border-radius:12px;background:rgba(245,158,11,.08)}
-    footer{margin-top:26px;color:var(--muted);font-size:13px;text-align:center}
-    table{width:100%;border-collapse:collapse;margin:8px 0}
+    .table-wrap{overflow-x:auto;margin:8px 0}
+    table{width:100%;border-collapse:collapse;min-width:500px}
     th,td{border:1px solid var(--rule);padding:8px;vertical-align:top}
     th{background:var(--panel);text-align:left}
     code{background:var(--code);padding:1px 4px;border-radius:4px}
     .grid{display:grid;gap:12px}
     @media(min-width:760px){.grid.cols-2{grid-template-columns:1fr 1fr}}
-    @media print{body{background:#fff}nav,section{break-inside:avoid}}
+
+    /* FOOTER */
+    footer{
+      margin-top:40px;
+      padding:36px 20px 20px;
+      border-top:1px solid var(--rule);
+      background:linear-gradient(180deg,rgba(255,255,255,.02),transparent);
+      text-align:center;
+      color:var(--muted);
+      font-size:13px;
+    }
+    .footer-earth{
+      margin-bottom:24px;
+      padding-bottom:24px;
+      border-bottom:1px solid var(--rule);
+      font-size:14px;
+      line-height:1.6;
+    }
+    .footer-earth a{color:var(--accent);font-weight:600}
+
+    @media print{
+      body{background:#fff}
+      .site-header,.music-player,.consent-overlay{display:none}
+      nav.toc,section{break-inside:avoid}
+    }
   </style>
 </head>
 <body>
+  <!-- CONSENT OVERLAY -->
+  <div class="consent-overlay" id="consentOverlay">
+    <div class="consent-box">
+      <h2>τ</h2>
+      <p class="artist-note">It was always Marina and the Diamonds.</p>
+      <p>This page features background music that plays while you read. By continuing, you agree to let the vibes flow.</p>
+      <button class="consent-btn" id="consentBtn">I Am Not a Robot — Continue</button>
+    </div>
+  </div>
+
+  <div class="site-header">
+    <div class="site-header-inner">
+      <div class="site-title">τ</div>
+      <nav class="site-nav">
+        <a href="https://manifolddynamics.plnt.earth">Manifold Dynamics</a>
+        <a href="https://manifolddynamics.plnt.earth/t">Manifold T</a>
+        <a href="https://illumina.plnt.earth/τ">τ</a>
+        <a href="https://infinity.plnt.earth">Infinity</a>
+        <a href="https://bejeweled.plnt.earth">Bejeweled</a>
+        <a href="https://time.plnt.earth">Time</a>
+        <a href="https://time.plnt.earth/elevator/index.html">Elevator</a>
+        <a href="https://honey.plnt.earth">Honey</a>
+        <a href="https://mirror.plnt.earth">Mirror</a>
+        <a href="https://earth.plnt.earth">Earth</a>
+        <a href="https://time.plnt.earth/anchors/index.html">Anchors</a>
+        <a href="https://time.plnt.earth/map/index.html">Map</a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- MUSIC PLAYER BAR -->
+  <div class="music-player" id="musicPlayer">
+    <div class="music-player-inner">
+      <div class="music-info">
+        <div class="music-dot"></div>
+        <div class="music-text"><strong>I Am Not a Robot</strong> — Marina and the Diamonds</div>
+      </div>
+      <div class="music-controls">
+        <button class="music-btn playing" id="playPauseBtn">Pause</button>
+        <a class="music-btn" href="https://www.youtube.com/watch?v=S_oMD6-6q5Y" target="_blank" rel="noopener">YouTube</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hidden YouTube iframe -->
+  <div id="youtube-player"></div>
+
   <div class="wrap">
     <header>
       <!-- The symbol τ *is* the name "illumina" (accessible label below) -->
       <div class="logo" role="img" aria-label="illumina (Greek tau symbol)">τ</div>
       <h1>Convergent Rendezvous</h1>
-      <div class="subtitle">Mathematical &amp; anthropic attractors for &tau;-robust messaging</div>
-      <div class="meta">Author: Tristan White &bull; v1.0 &bull; Updated: Tue, Sep 2, 2025</div>
+      <div class="subtitle">Mathematical & anthropic attractors for τ-robust messaging</div>
+      <div class="meta">Author: Tristan White • v1.0 • Updated: Tue, Sep 2, 2025</div>
 
-      <nav aria-label="Contents">
+      <nav class="toc" aria-label="Contents">
         <ul>
-          <li><a href="/">Home</a> &middot; <a href="/%CF%84/">/τ</a></li>
           <li><a href="#abstract">Abstract</a></li>
           <li><a href="#crp">1. Convergent Rendezvous Principle (CRP)</a></li>
-          <li><a href="#flow">2. &tau;-Flow &amp; Rendezvous Efficiency</a></li>
+          <li><a href="#flow">2. τ-Flow & Rendezvous Efficiency</a></li>
           <li><a href="#spec">3. Illumina-1 Spec</a></li>
-          <li><a href="#tests">4. Predictions &amp; Tests</a></li>
+          <li><a href="#tests">4. Predictions & Tests</a></li>
           <li><a href="#ethics">5. Safety</a></li>
           <li><a href="#appendix">Appendix</a></li>
         </ul>
@@ -96,7 +317,7 @@
       <section id="abstract"><h2>Abstract</h2>
         <p class="abstract">
           We treat the Greek letter <strong>τ</strong> as the symbol (codename <em>illumina</em>) for a rendezvous framework:
-          mathematical optimality &plus; anthropic selection push independent lineages toward the same short prime headers,
+          mathematical optimality + anthropic selection push independent lineages toward the same short prime headers,
           simple ECC, dimensionless anchors, and optional topological flags. Using only plain HTML entities, we specify a
           minimal standard and show how to test its convergent inevitability.
         </p>
@@ -104,15 +325,15 @@
 
       <section id="crp"><h2>1. Convergent Rendezvous Principle (CRP)</h2>
         <div class="callout">
-          <strong>CRP:</strong> Under fixed physical law, mathematical optimality &amp; anthropic selection induce a flow on design space with a small attractor set.
-          Choosing from that set maximizes cross-civilization discoverability per recipient &tau;.
+          <strong>CRP:</strong> Under fixed physical law, mathematical optimality & anthropic selection induce a flow on design space with a small attractor set.
+          Choosing from that set maximizes cross-civilization discoverability per recipient τ.
         </div>
         <div class="grid cols-2">
           <div>
             <h3>Attractors (math)</h3>
             <ul>
               <li>Prime-length headers with low sidelobes (Barker-like, Legendre, m-sequences).</li>
-              <li>Compact ECC (Reed&ndash;Solomon; extended Golay).</li>
+              <li>Compact ECC (Reed–Solomon; extended Golay).</li>
               <li>Dimensionless anchors: ratios any physics can in principle obtain.</li>
               <li>Optional topology flags (matched-circles template IDs).</li>
             </ul>
@@ -120,7 +341,7 @@
           <div>
             <h3>Filter (anthropic)</h3>
             <ul>
-              <li>Inefficient codes waste &tau; and self-select out.</li>
+              <li>Inefficient codes waste τ and self-select out.</li>
               <li>Survivors converge on the same small toolkit.</li>
               <li>Asynchronous rendezvous (shared decoder without prior contact).</li>
             </ul>
@@ -128,18 +349,18 @@
         </div>
       </section>
 
-      <section id="flow"><h2>2. &tau;-Flow &amp; Rendezvous Efficiency</h2>
-        <p>Let <em>X</em> be a point in design space. Utility per &tau;-budget:</p>
-        <div class="equation">U(X;\,&tau;) = useful&nbsp;output / &tau;.</div>
+      <section id="flow"><h2>2. τ-Flow & Rendezvous Efficiency</h2>
+        <p>Let <em>X</em> be a point in design space. Utility per τ-budget:</p>
+        <div class="equation">U(X; τ) = useful output / τ.</div>
         <p>Gradient-like dynamics with constraints:</p>
-        <div class="equation">&dot;X &approx; &Pi;<sub>constraints</sub> &nabla;<sub>X</sub>U + noise.</div>
+        <div class="equation">Ẋ ≈ Π<sub>constraints</sub> ∇<sub>X</sub>U + noise.</div>
         <p>Define rendezvous efficiency:</p>
-        <div class="equation">&eta;<sub>R</sub> = Pr(correct&nbsp;decode) per recipient-&tau; &rarr; attractor choices maximize &eta;<sub>R</sub>.</div>
+        <div class="equation">η<sub>R</sub> = Pr(correct decode) per recipient-τ → attractor choices maximize η<sub>R</sub>.</div>
       </section>
 
       <section id="spec"><h2>3. Illumina-1 Spec</h2>
         <h3>3.1 Handshake header</h3>
-        <div class="equation">M = &lbrace; prime length <i>p</i>, Barker-like autocorrelation, checksum &rbrace;.</div>
+        <div class="equation">M = { prime length <i>p</i>, Barker-like autocorrelation, checksum }.</div>
         <ul>
           <li>Recommended <em>p</em>: 31 or 47.</li>
           <li>Checksum: 16-bit parity or Golay(24,12,8) syndrome.</li>
@@ -152,65 +373,127 @@
         </ul>
 
         <h3>3.3 Dimensionless anchor tuple</h3>
-        <div class="equation"><b>a</b> = ( &alpha;, m<sub>e</sub>/m<sub>p</sub>, Q, G&hbar;/c<sup>3</sup> ).</div>
+        <div class="equation"><b>a</b> = ( α, m<sub>e</sub>/m<sub>p</sub>, Q, Gℏ/c³ ).</div>
         <p>Prefer symbolic reference or sub-noise perturbations; stay below structure-formation bounds.</p>
 
         <h3>3.4 Optional topology echo</h3>
         <p>One matched-circles template bit; harmless if null.</p>
       </section>
 
-      <section id="tests"><h2>4. Predictions &amp; Tests</h2>
+      <section id="tests"><h2>4. Predictions & Tests</h2>
         <h3>4.1 Convergence predictions</h3>
         <ul>
           <li>Independent high-reliability systems cluster on a few prime-length headers/ECC families.</li>
           <li>Maximum-likelihood decoders for those families recur across domains.</li>
-          <li>Lockstep correlations appear across sensing &rarr; coding &rarr; scheduling to minimize wasted &tau;.</li>
+          <li>Lockstep correlations appear across sensing → coding → scheduling to minimize wasted τ.</li>
         </ul>
         <h3>4.2 DIY checks</h3>
         <ul>
-          <li><strong>Header audit:</strong> collect real preambles; test for prime lengths &amp; sidelobes.</li>
-          <li><strong>&eta;<sub>R</sub> bake-off:</strong> simulate recipient cost; pick <em>p</em>, ECC maximizing decode per &tau;.</li>
-          <li><strong>Carrier sanity:</strong> plant a 31/47 header at &lt;5&sigma; and measure fixed-statistic detectability.</li>
+          <li><strong>Header audit:</strong> collect real preambles; test for prime lengths & sidelobes.</li>
+          <li><strong>η<sub>R</sub> bake-off:</strong> simulate recipient cost; pick <em>p</em>, ECC maximizing decode per τ.</li>
+          <li><strong>Carrier sanity:</strong> plant a 31/47 header at <5σ and measure fixed-statistic detectability.</li>
         </ul>
       </section>
 
       <section id="ethics"><h2>5. Safety</h2>
         <div class="callout">
           Cosmic safety charter: pre-register analyses; prefer diagnostic encodings (non-perturbative);
-          publish code &amp; null ensembles; use multi-party review; encode pro-social norms alongside the handshake.
+          publish code & null ensembles; use multi-party review; encode pro-social norms alongside the handshake.
         </div>
       </section>
 
-      <section id="appendix"><h2>Appendix — Encoders &amp; Capacity sketch</h2>
-        <table>
-          <tr><th>Carrier</th><th>Handle</th><th>Noise</th><th>Pros / Cons</th></tr>
-          <tr>
-            <td>Spectrum</td><td>Low-&ell; phases; a<sub>&ell;m</sub></td>
-            <td>Gaussian field &plus; systematics</td>
-            <td>Global visibility / multiple-testing penalties</td>
-          </tr>
-          <tr>
-            <td>Constants</td><td>&alpha;, m<sub>e</sub>/m<sub>p</sub>, Q, G&hbar;/c<sup>3</sup></td>
-            <td>Lab error; drift</td>
-            <td>Simple &amp; universal / very low capacity</td>
-          </tr>
-          <tr>
-            <td>Topology</td><td>Matched circles; compact flags</td>
-            <td>Cosmic variance; masking</td>
-            <td>Dimensionless / hard inference</td>
-          </tr>
-        </table>
+      <section id="appendix"><h2>Appendix — Encoders & Capacity sketch</h2>
+        <div class="table-wrap">
+          <table>
+            <tr><th>Carrier</th><th>Handle</th><th>Noise</th><th>Pros / Cons</th></tr>
+            <tr>
+              <td>Spectrum</td><td>Low-ℓ phases; a<sub>ℓm</sub></td>
+              <td>Gaussian field + systematics</td>
+              <td>Global visibility / multiple-testing penalties</td>
+            </tr>
+            <tr>
+              <td>Constants</td><td>α, m<sub>e</sub>/m<sub>p</sub>, Q, Gℏ/c³</td>
+              <td>Lab error; drift</td>
+              <td>Simple & universal / very low capacity</td>
+            </tr>
+            <tr>
+              <td>Topology</td><td>Matched circles; compact flags</td>
+              <td>Cosmic variance; masking</td>
+              <td>Dimensionless / hard inference</td>
+            </tr>
+          </table>
+        </div>
         <div class="equation">
-          C &approx; &sum;<sub>i</sub> log<sub>2</sub>(1 + &tau;<sub>enc,i</sub><sup>2</sup>/&sigma;<sub>i</sub><sup>2</sup>) &nbsp; (orthogonal carriers i).
+          C ≈ Σ<sub>i</sub> log₂(1 + τ<sub>enc,i</sub>²/σ<sub>i</sub>²) (orthogonal carriers i).
         </div>
       </section>
     </main>
-
-    <footer>&copy; <span id="y"></span> Tristan White &bull; “Illumina” denotes the τ symbol on this page • CC BY-NC-SA 4.0</footer>
   </div>
+
+  <footer>
+    <div class="footer-earth">
+      <a href="https://earth.plnt.earth">Earth</a> is a grounding page. This one stays. A place to hold joy, music, and motion — untouched by the noise. If the system shifts, Earth remains.
+    </div>
+    © 2025 Tristan White • "Illumina" denotes the τ symbol on this page • CC BY-NC-SA 4.0
+  </footer>
+
   <script>
-    // Keep the footer year current
-    document.getElementById("y").textContent = new Date().getFullYear();
+    (function(){
+      var VIDEO_ID = 'S_oMD6-6q5Y';
+      var consentOverlay = document.getElementById('consentOverlay');
+      var consentBtn = document.getElementById('consentBtn');
+      var playerHost = document.getElementById('youtube-player');
+      var playPauseBtn = document.getElementById('playPauseBtn');
+      var musicPlayer = document.getElementById('musicPlayer');
+      var iframe = null;
+      var isPlaying = false;
+
+      // Hide music player until consent
+      musicPlayer.style.display = 'none';
+
+      function buildSrc() {
+        var params = new URLSearchParams({
+          autoplay: '1',
+          loop: '1',
+          playlist: VIDEO_ID,
+          modestbranding: '1',
+          rel: '0',
+          enablejsapi: '1'
+        });
+        return 'https://www.youtube-nocookie.com/embed/' + VIDEO_ID + '?' + params.toString();
+      }
+
+      function injectPlayer() {
+        iframe = document.createElement('iframe');
+        iframe.title = 'Background music';
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+        iframe.src = buildSrc();
+        iframe.id = 'yt-iframe';
+        playerHost.appendChild(iframe);
+        isPlaying = true;
+        musicPlayer.style.display = 'block';
+      }
+
+      consentBtn.addEventListener('click', function() {
+        consentOverlay.classList.add('hidden');
+        injectPlayer();
+      });
+
+      playPauseBtn.addEventListener('click', function() {
+        if (!iframe) return;
+        if (isPlaying) {
+          iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+          playPauseBtn.textContent = 'Play';
+          playPauseBtn.classList.remove('playing');
+          isPlaying = false;
+        } else {
+          iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+          playPauseBtn.textContent = 'Pause';
+          playPauseBtn.classList.add('playing');
+          isPlaying = true;
+        }
+      });
+    })();
   </script>
 </body>
 </html>
