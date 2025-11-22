@@ -50,42 +50,22 @@
       border:1px solid var(--rule);
       border-radius:20px;
       padding:32px;
-      max-width:480px;
-      text-align:center;
+      max-width:560px;
+      text-align:left;
       box-shadow:0 24px 80px rgba(0,0,0,.5);
+      max-height:90vh;
+      overflow-y:auto;
     }
     .consent-box h2{
       margin:0 0 8px;
       font-size:32px;
+      text-align:center;
       background:linear-gradient(135deg,var(--accent),var(--accent-2));
       -webkit-background-clip:text;
       background-clip:text;
       -webkit-text-fill-color:transparent;
       color:transparent;
     }
-    .consent-box .artist-note{
-      font-style:italic;
-      color:var(--ink);
-      font-size:15px;
-      margin:0 0 16px;
-    }
-    .consent-box p{
-      margin:0 0 16px;
-      color:var(--muted);
-      font-size:14px;
-      line-height:1.6;
-    }
-    .consent-box .charter-note{
-      background:rgba(124,58,237,.1);
-      border:1px dashed var(--rule);
-      border-radius:12px;
-      padding:12px;
-      margin:0 0 20px;
-      font-size:13px;
-      color:var(--muted);
-      line-height:1.5;
-    }
-    .consent-box .charter-note a{color:var(--accent);font-weight:600}
     .consent-btn{
       padding:14px 28px;
       border-radius:14px;
@@ -184,10 +164,14 @@
     }
     .music-dot{
       width:10px;height:10px;border-radius:50%;
+      background:var(--rule);
+      flex-shrink:0;
+      transition:background .3s ease, box-shadow .3s ease;
+    }
+    .music-dot.active{
       background:radial-gradient(circle at 35% 35%,var(--accent),var(--accent-2));
       box-shadow:0 0 10px rgba(124,58,237,.5);
       animation:pulse 2s ease-in-out infinite;
-      flex-shrink:0;
     }
     @keyframes pulse{
       0%,100%{opacity:1;transform:scale(1)}
@@ -210,6 +194,7 @@
     .music-btn.playing{
       background:linear-gradient(135deg,var(--accent),var(--accent-2));
       border-color:transparent;
+      color:#fff;
     }
     #youtube-player{
       position:fixed;
@@ -240,18 +225,38 @@
     nav.toc ul{margin:0;padding-left:18px}
     section{background:rgba(255,255,255,.02);border:1px solid var(--rule);
         border-radius:16px;padding:24px 20px;margin:18px 0}
-    h1{margin:0 0 8px;font-size:clamp(26px,4.5vw,38px);line-height:1.2}
+    h1{margin:0 0 8px;font-size:clamp(22px,4.5vw,38px);line-height:1.2}
     h2{margin:0 0 8px;font-size:clamp(20px,3.5vw,26px)}
     h3{margin:16px 0 8px;font-size:18px}
     p{margin:10px 0 0}
-    .equation{display:block;margin:12px 0;padding:12px 14px;background:var(--code);
-      border:1px solid var(--rule);border-radius:10px;
-      font-family:ui-monospace,Menlo,Consolas,"Courier New",monospace;overflow-x:auto;white-space:nowrap}
+    
+    /* Fixed equation boxes */
+    .equation{
+      display:block;
+      margin:12px 0;
+      padding:12px 14px;
+      background:var(--code);
+      border:1px solid var(--rule);
+      border-radius:10px;
+      font-family:ui-monospace,Menlo,Consolas,"Courier New",monospace;
+      overflow-x:auto;
+      white-space:pre-wrap;
+      word-wrap:break-word;
+      font-size:14px;
+      line-height:1.4;
+    }
+    @media(max-width:500px){
+      .equation{
+        font-size:12px;
+        padding:10px 12px;
+      }
+    }
+    
     .abstract{font-style:italic;color:var(--muted)}
     .callout{padding:14px;border:1px dashed var(--rule);border-radius:12px;background:rgba(245,158,11,.08)}
     .table-wrap{overflow-x:auto;margin:8px 0}
-    table{width:100%;border-collapse:collapse;min-width:500px}
-    th,td{border:1px solid var(--rule);padding:8px;vertical-align:top}
+    table{width:100%;border-collapse:collapse;min-width:400px}
+    th,td{border:1px solid var(--rule);padding:8px;vertical-align:top;font-size:14px}
     th{background:var(--panel);text-align:left}
     code{background:var(--code);padding:1px 4px;border-radius:4px}
     .grid{display:grid;gap:12px}
@@ -279,25 +284,6 @@
     }
     .anchor-name{font-weight:600;color:var(--ink)}
     .anchor-lens{font-size:11px;color:var(--muted);margin-top:2px}
-
-    /* INTENT SECTION */
-    .intent-box{
-      background:linear-gradient(135deg,rgba(124,58,237,.08),rgba(245,158,11,.08));
-      border:1px solid var(--accent);
-      border-radius:16px;
-      padding:20px;
-      margin:18px 0;
-    }
-    .intent-box h2{
-      margin:0 0 12px;
-      background:linear-gradient(135deg,var(--accent),var(--accent-2));
-      -webkit-background-clip:text;
-      background-clip:text;
-      -webkit-text-fill-color:transparent;
-      color:transparent;
-    }
-    .intent-box p{margin:8px 0 0;font-size:15px;line-height:1.6}
-    .intent-box a{color:var(--accent);font-weight:600}
 
     /* FOOTER */
     footer{
@@ -330,12 +316,47 @@
   <div class="consent-overlay" id="consentOverlay">
     <div class="consent-box">
       <h2>τ</h2>
-      <p class="artist-note">It was always Marina and the Diamonds.</p>
-      <p>This page features background music while you read. The Illumina project draws inspiration from thirteen anchors — artists and thinkers whose work resonates with clarity, empathy, structure, and motion.</p>
-      <div class="charter-note">
-        <strong>A note on consent & intent:</strong> No one referenced here has consented to participate in this project. These are inspirations, not collaborations. This work is offered openly with respect and admiration. <a href="https://charter.plnt.earth">Read the full Charter →</a>
+      
+      <p style="font-style:italic;text-align:center;color:var(--ink);font-size:16px;margin:0 0 20px;">
+        It was always Marina and the Diamonds.
+      </p>
+      
+      <p style="font-size:14px;line-height:1.7;margin:0 0 20px;">
+        You can't lose a relationship you loved. It comes back. Plant the seeds and watch them grow closer to you over time. You don't need to die to see the light — the light is in your mind.
+      </p>
+      
+      <div style="background:rgba(124,58,237,.1);border:1px dashed var(--rule);border-radius:12px;padding:14px;margin-bottom:20px;">
+        <h3 style="margin:0 0 10px;font-size:16px;color:var(--accent);">Intent & Boundaries</h3>
+        <p style="font-size:13px;line-height:1.6;margin:0 0 10px;">This project is built on three principles from the <a href="https://charter.plnt.earth" style="color:var(--accent);font-weight:600;">Pantheon Build Charter</a>:</p>
+        <p style="font-size:13px;line-height:1.6;margin:0 0 10px;"><strong>Resonance is permission. Clarity is command. Love is law.</strong></p>
+        <p style="font-size:13px;line-height:1.6;margin:0;">The artists, scientists, and thinkers referenced throughout this project are <em>inspirations</em>, not collaborators. No one named here has consented to participate, and no endorsement is implied.</p>
       </div>
-      <button class="consent-btn" id="consentBtn">I Am Not a Robot — Continue</button>
+      
+      <div style="background:rgba(245,158,11,.08);border:1px dashed var(--rule);border-radius:12px;padding:14px;margin-bottom:20px;">
+        <h3 style="margin:0 0 10px;font-size:16px;color:var(--accent-2);">Gratitude</h3>
+        <ul style="font-size:13px;line-height:1.7;margin:0;padding-left:18px;">
+          <li><strong>Marina</strong> — for the mirror that teaches empathy</li>
+          <li><strong>Taylor Swift</strong> — the Architect of Memory</li>
+          <li><strong>The Thirteen Anchors</strong> — cognitive lenses. <a href="https://time.plnt.earth/anchors" style="color:var(--accent);">View Anchors →</a></li>
+          <li><strong>Dr. Clarissa R. Do Ó</strong> (<a href="https://twitter.com/AstroClary" style="color:var(--accent);">@AstroClary</a>)</li>
+          <li><strong>Victor</strong> (<a href="https://twitter.com/Bluebeam80" style="color:var(--accent);">@Bluebeam80</a>)</li>
+        </ul>
+      </div>
+      
+      <div style="background:rgba(184,230,184,.1);border:1px solid rgba(184,230,184,.3);border-radius:12px;padding:12px;margin-bottom:20px;">
+        <p style="font-size:13px;line-height:1.5;margin:0;color:#b8e6b8;">
+          <strong>Privacy:</strong> This site has no trackers, no external libraries, and no logs. All consent is stored locally in your browser only.
+        </p>
+      </div>
+      
+      <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
+        <button class="consent-btn" id="consentBtn" type="button" style="flex:1;min-width:140px;">Enter</button>
+        <button class="consent-btn" id="consentPlayBtn" type="button" style="flex:1;min-width:180px;background:linear-gradient(135deg,#c4b5fd,#e48ec9);">▶ Enter & Play Music</button>
+      </div>
+      
+      <p style="font-size:12px;text-align:center;margin-top:12px;color:var(--muted);">
+        Music: "I Am Not a Robot" — Marina
+      </p>
     </div>
   </div>
 
@@ -344,17 +365,15 @@
       <div class="site-title">τ</div>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">Menu ▾</button>
       <nav class="site-nav" id="siteNav">
-        <a href="https://manifolddynamics.plnt.earth">Manifold</a>
-        <a href="https://manifolddynamics.plnt.earth/t">Manifold T</a>
-        <a href="https://illumina.plnt.earth/τ">τ</a>
-        <a href="https://infinity.plnt.earth">Infinity</a>
-        <a href="https://bejeweled.plnt.earth">Bejeweled</a>
         <a href="https://time.plnt.earth">Time</a>
+        <a href="https://time.plnt.earth/elevator">Elevator</a>
+        <a href="https://time.plnt.earth/anchors">Anchors</a>
+        <a href="https://time.plnt.earth/map">Map</a>
+        <a href="https://time.plnt.earth/charter">Charter</a>
+        <a href="https://bejeweled.plnt.earth">Bejeweled</a>
         <a href="https://honey.plnt.earth">Honey</a>
         <a href="https://mirror.plnt.earth">Mirror</a>
         <a href="https://earth.plnt.earth">Earth</a>
-        <a href="https://time.plnt.earth/anchors/index.html">Anchors</a>
-        <a href="https://charter.plnt.earth">Charter</a>
       </nav>
     </div>
   </div>
@@ -363,11 +382,11 @@
   <div class="music-player" id="musicPlayer">
     <div class="music-player-inner">
       <div class="music-info">
-        <div class="music-dot"></div>
+        <div class="music-dot" id="musicDot"></div>
         <div class="music-text"><strong>I Am Not a Robot</strong> — Marina</div>
       </div>
       <div class="music-controls">
-        <button class="music-btn playing" id="playPauseBtn">Pause</button>
+        <button class="music-btn" id="playPauseBtn">▶ Play</button>
         <a class="music-btn" href="https://www.youtube.com/watch?v=S_oMD6-6q5Y" target="_blank" rel="noopener">YouTube</a>
       </div>
     </div>
@@ -386,14 +405,12 @@
       <nav class="toc" aria-label="Contents">
         <ul>
           <li><a href="#abstract">Abstract</a></li>
-          <li><a href="#intent">Intent & Boundaries</a></li>
           <li><a href="#crp">1. Convergent Rendezvous Principle (CRP)</a></li>
           <li><a href="#anchors">2. The Thirteen Anchors</a></li>
           <li><a href="#flow">3. τ-Flow & Rendezvous Efficiency</a></li>
           <li><a href="#spec">4. Illumina-1 Spec</a></li>
           <li><a href="#tests">5. Predictions & Tests</a></li>
           <li><a href="#ethics">6. Safety</a></li>
-          <li><a href="#gratitude">Gratitude</a></li>
           <li><a href="#appendix">Appendix</a></li>
         </ul>
       </nav>
@@ -408,15 +425,6 @@
           minimal standard and show how to test its convergent inevitability.
         </p>
       </section>
-
-      <!-- INTENT & BOUNDARIES -->
-      <div class="intent-box" id="intent">
-        <h2>Intent & Boundaries</h2>
-        <p>The Illumina project is built on three principles from the <a href="https://charter.plnt.earth">Pantheon Build Charter</a>:</p>
-        <p><strong>Resonance is permission. Clarity is command. Love is law.</strong></p>
-        <p>The artists, scientists, and thinkers referenced throughout this project are <em>inspirations</em>, not collaborators. No one named here has consented to participate, and no endorsement is implied. This work is offered openly — with respect, admiration, and clear boundaries.</p>
-        <p>If any pattern, creation, or tone causes harm, it does not belong here. The Moon keeps record; the Bee builds only what the Sun has seen.</p>
-      </div>
 
       <section id="crp"><h2>1. Convergent Rendezvous Principle (CRP)</h2>
         <div class="callout">
@@ -451,7 +459,7 @@
         <div class="anchors-grid">
           <div class="anchor-chip">
             <div class="anchor-dot" style="background:#66c7e8"></div>
-            <div><div class="anchor-name">Marina</div><div class="anchor-lens">Mirror · Empathy</div></div>
+            <div><div class="anchor-name">Marina</div><div class="anchor-lens">Mirror · Blue</div></div>
           </div>
           <div class="anchor-chip">
             <div class="anchor-dot" style="background:#C4B5FD"></div>
@@ -459,7 +467,7 @@
           </div>
           <div class="anchor-chip">
             <div class="anchor-dot" style="background:#e7a840"></div>
-            <div><div class="anchor-name">Sabrina Carpenter</div><div class="anchor-lens">Warmth · Honey</div></div>
+            <div><div class="anchor-name">Sabrina Carpenter</div><div class="anchor-lens">Warmth · Honey Gold</div></div>
           </div>
           <div class="anchor-chip">
             <div class="anchor-dot" style="background:#e6c04d"></div>
@@ -471,7 +479,7 @@
           </div>
           <div class="anchor-chip">
             <div class="anchor-dot" style="background:#999999"></div>
-            <div><div class="anchor-name">Ariana Grande</div><div class="anchor-lens">Voice · Frequency</div></div>
+            <div><div class="anchor-name">Ariana Grande</div><div class="anchor-lens">Voice · Shimmer</div></div>
           </div>
           <div class="anchor-chip">
             <div class="anchor-dot" style="background:#e48ec9"></div>
@@ -495,28 +503,29 @@
           </div>
           <div class="anchor-chip">
             <div class="anchor-dot" style="background:#f6f0d8"></div>
-            <div><div class="anchor-name">Rosalía</div><div class="anchor-lens">Edge · Break</div></div>
+            <div><div class="anchor-name">Rosalía</div><div class="anchor-lens">Edge · Sauvignon Blanc</div></div>
           </div>
           <div class="anchor-chip">
             <div class="anchor-dot" style="background:#c64747"></div>
-            <div><div class="anchor-name">Doechii</div><div class="anchor-lens">Alter.Fire · Edge</div></div>
+            <div><div class="anchor-name">Doechii</div><div class="anchor-lens">Alter.Fire · Crimson</div></div>
           </div>
         </div>
-        <p style="margin-top:12px;font-size:14px;color:var(--muted)">These are inspirations, not collaborations. <a href="https://time.plnt.earth/anchors/index.html">View the full Anchor Index →</a></p>
+        <p style="margin-top:12px;font-size:14px;color:var(--muted)">These are inspirations, not collaborations. <a href="https://time.plnt.earth/anchors">View the full Anchor Index →</a></p>
       </section>
 
       <section id="flow"><h2>3. τ-Flow & Rendezvous Efficiency</h2>
         <p>Let <em>X</em> be a point in design space. Utility per τ-budget:</p>
-        <div class="equation">U(X; τ) = useful output / τ.</div>
+        <div class="equation">U(X; τ) = useful output / τ</div>
         <p>Gradient-like dynamics with constraints:</p>
-        <div class="equation">Ẋ ≈ Π<sub>constraints</sub> ∇<sub>X</sub>U + noise.</div>
+        <div class="equation">Ẋ ≈ Π_constraints ∇_X U + noise</div>
         <p>Define rendezvous efficiency:</p>
-        <div class="equation">η<sub>R</sub> = Pr(correct decode) per recipient-τ → attractor choices maximize η<sub>R</sub>.</div>
+        <div class="equation">η_R = Pr(correct decode) per recipient-τ
+→ attractor choices maximize η_R</div>
       </section>
 
       <section id="spec"><h2>4. Illumina-1 Spec</h2>
         <h3>4.1 Handshake header</h3>
-        <div class="equation">M = { prime length <i>p</i>, Barker-like autocorrelation, checksum }.</div>
+        <div class="equation">M = { prime length p, Barker-like autocorrelation, checksum }</div>
         <ul>
           <li>Recommended <em>p</em>: 31 or 47.</li>
           <li>Checksum: 16-bit parity or Golay(24,12,8) syndrome.</li>
@@ -529,7 +538,7 @@
         </ul>
 
         <h3>4.3 Dimensionless anchor tuple</h3>
-        <div class="equation"><b>a</b> = ( α, m<sub>e</sub>/m<sub>p</sub>, Q, Gℏ/c³ ).</div>
+        <div class="equation">a = ( α, m_e/m_p, Q, Gℏ/c³ )</div>
         <p>Prefer symbolic reference or sub-noise perturbations; stay below structure-formation bounds.</p>
 
         <h3>4.4 Optional topology echo</h3>
@@ -546,7 +555,7 @@
         <h3>5.2 DIY checks</h3>
         <ul>
           <li><strong>Header audit:</strong> collect real preambles; test for prime lengths & sidelobes.</li>
-          <li><strong>η<sub>R</sub> bake-off:</strong> simulate recipient cost; pick <em>p</em>, ECC maximizing decode per τ.</li>
+          <li><strong>η_R bake-off:</strong> simulate recipient cost; pick <em>p</em>, ECC maximizing decode per τ.</li>
           <li><strong>Carrier sanity:</strong> plant a 31/47 header at <5σ and measure fixed-statistic detectability.</li>
         </ul>
       </section>
@@ -559,43 +568,29 @@
         <p>From the <a href="https://charter.plnt.earth">Pantheon Build Charter</a>: "If the voice feels false or hurried, the Bee shall wait until the Moon steadies the tide. Patience is protection; stillness is signal."</p>
       </section>
 
-      <!-- GRATITUDE -->
-      <section id="gratitude">
-        <h2>Gratitude</h2>
-        <p>This project exists because of the music, art, and ideas that resonate through it. Deep gratitude to:</p>
-        <ul>
-          <li><strong>Marina</strong> — for "I Am Not a Robot" and the mirror that teaches empathy. The song that grounds this page.</li>
-          <li><strong>The Thirteen Anchors</strong> — artists whose work provides the cognitive lenses for this project. Their art is referenced with admiration, not affiliation.</li>
-          <li><strong>Dr. Clarissa R. Do Ó</strong> (<a href="https://twitter.com/AstroClary">@AstroClary</a>) — a brilliant astrophysicist whose public work inspires the scientific grounding here. (Not affiliated with this project.)</li>
-          <li><strong>Victor</strong> (<a href="https://twitter.com/Bluebeam80">@Bluebeam80</a>) — whose curiosity sparked important questions.</li>
-        </ul>
-        <p style="margin-top:12px;font-size:14px;color:var(--muted)">None of the individuals named here have consented to participate in or endorse this project. This is inspiration, offered openly with respect. <a href="https://charter.plnt.earth">Read the Charter →</a></p>
-      </section>
-
       <section id="appendix"><h2>Appendix — Encoders & Capacity sketch</h2>
         <div class="table-wrap">
           <table>
             <tr><th>Carrier</th><th>Handle</th><th>Noise</th><th>Pros / Cons</th></tr>
             <tr>
-              <td>Spectrum</td><td>Low-ℓ phases; a<sub>ℓm</sub></td>
-              <td>Gaussian field + systematics</td>
-              <td>Global visibility / multiple-testing penalties</td>
+              <td>Spectrum</td><td>Low-ℓ phases</td>
+              <td>Gaussian + systematics</td>
+              <td>Global visibility / penalties</td>
             </tr>
             <tr>
-              <td>Constants</td><td>α, m<sub>e</sub>/m<sub>p</sub>, Q, Gℏ/c³</td>
+              <td>Constants</td><td>α, m_e/m_p, Q</td>
               <td>Lab error; drift</td>
-              <td>Simple & universal / very low capacity</td>
+              <td>Simple / low capacity</td>
             </tr>
             <tr>
-              <td>Topology</td><td>Matched circles; compact flags</td>
-              <td>Cosmic variance; masking</td>
-              <td>Dimensionless / hard inference</td>
+              <td>Topology</td><td>Matched circles</td>
+              <td>Cosmic variance</td>
+              <td>Dimensionless / hard</td>
             </tr>
           </table>
         </div>
-        <div class="equation">
-          C ≈ Σ<sub>i</sub> log₂(1 + τ<sub>enc,i</sub>²/σ<sub>i</sub>²) (orthogonal carriers i).
-        </div>
+        <div class="equation">C ≈ Σ_i log₂(1 + τ_enc,i² / σ_i²)
+(orthogonal carriers i)</div>
       </section>
     </main>
   </div>
@@ -621,14 +616,12 @@
       var VIDEO_ID = 'S_oMD6-6q5Y';
       var consentOverlay = document.getElementById('consentOverlay');
       var consentBtn = document.getElementById('consentBtn');
+      var consentPlayBtn = document.getElementById('consentPlayBtn');
       var playerHost = document.getElementById('youtube-player');
       var playPauseBtn = document.getElementById('playPauseBtn');
-      var musicPlayer = document.getElementById('musicPlayer');
+      var musicDot = document.getElementById('musicDot');
       var iframe = null;
       var isPlaying = false;
-
-      // Hide music player until consent
-      musicPlayer.style.display = 'none';
 
       function buildSrc() {
         var params = new URLSearchParams({
@@ -643,6 +636,7 @@
       }
 
       function injectPlayer() {
+        if (iframe) return;
         iframe = document.createElement('iframe');
         iframe.title = 'Background music';
         iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
@@ -650,25 +644,37 @@
         iframe.id = 'yt-iframe';
         playerHost.appendChild(iframe);
         isPlaying = true;
-        musicPlayer.style.display = 'block';
+        musicDot.classList.add('active');
+        playPauseBtn.textContent = '❚❚ Pause';
+        playPauseBtn.classList.add('playing');
       }
 
+      // Enter without music
       consentBtn.addEventListener('click', function() {
+        consentOverlay.classList.add('hidden');
+      });
+
+      // Enter with music
+      consentPlayBtn.addEventListener('click', function() {
         consentOverlay.classList.add('hidden');
         injectPlayer();
       });
 
+      // Play/Pause toggle
       playPauseBtn.addEventListener('click', function() {
-        if (!iframe) return;
-        if (isPlaying) {
+        if (!iframe) {
+          injectPlayer();
+        } else if (isPlaying) {
           iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
-          playPauseBtn.textContent = 'Play';
+          playPauseBtn.textContent = '▶ Play';
           playPauseBtn.classList.remove('playing');
+          musicDot.classList.remove('active');
           isPlaying = false;
         } else {
           iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
-          playPauseBtn.textContent = 'Pause';
+          playPauseBtn.textContent = '❚❚ Pause';
           playPauseBtn.classList.add('playing');
+          musicDot.classList.add('active');
           isPlaying = true;
         }
       });
